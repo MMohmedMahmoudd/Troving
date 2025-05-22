@@ -2,6 +2,7 @@ import { useMemo, useState,useEffect } from 'react';
 import axios from 'axios';
 import { DataGrid, KeenIcon } from '@/components';
 import { useNavigate } from 'react-router-dom';
+import { toAbsoluteUrl } from '@/utils';
 
 const Providers = () => {
   const navigate = useNavigate();
@@ -49,12 +50,12 @@ const Providers = () => {
           <div className="flex items-center gap-2">
             <img
               loading="lazy"
-              src={image || '/media/avatars/blank.png'}
+              src={image || toAbsoluteUrl('/media/avatars/blank.png')}
               alt={name || 'Unknown'}
               className="w-8 h-8 rounded-full object-cover"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/media/avatars/blank.png';
+                e.target.src = toAbsoluteUrl('/media/avatars/blank.png');
               }}
             />
             <div>

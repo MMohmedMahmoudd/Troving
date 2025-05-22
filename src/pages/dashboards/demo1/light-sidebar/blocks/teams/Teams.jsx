@@ -3,6 +3,8 @@ import axios from 'axios';
 import { DataGrid, KeenIcon } from '@/components';
 import { useNavigate } from 'react-router-dom';
 import { DateRangeFilter } from '@/components';
+import { toAbsoluteUrl } from '@/utils';
+
 const Teams = () => {
   const navigate = useNavigate();
 
@@ -40,12 +42,12 @@ const Teams = () => {
         <div className="flex items-center gap-3">
       <img
         loading="lazy"
-        src={row.original.person_image || '/media/avatars/blank.png'}
+        src={row.original.person_image || toAbsoluteUrl('/media/avatars/blank.png')}
         alt={row.original.person_name}
         className="w-8 h-8 rounded-full object-cover"
         onError={(e) => {
           e.target.onerror = null;
-          e.target.src = '/media/avatars/blank.png';
+          e.target.src = toAbsoluteUrl('/media/avatars/blank.png');
         }}
       />
           <span className="font-medium">{row.original.person_name}</span>

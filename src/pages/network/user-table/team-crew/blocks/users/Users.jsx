@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { DataGrid, KeenIcon } from '@/components';
 import { useNavigate } from 'react-router-dom';
+import { toAbsoluteUrl } from '@/utils';
+
 const Users = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -33,12 +35,12 @@ const Users = () => {
         return (
           <div className="flex items-center gap-3">
             <img
-              src={image || '/media/avatars/blank.png'}
+              src={image || toAbsoluteUrl('/media/avatars/blank.png')}
               alt={name}
               className="w-9 h-9 rounded-full object-cover"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/media/avatars/blank.png';
+                e.target.src = toAbsoluteUrl('/media/avatars/blank.png');
               }}
             />
             <div>
