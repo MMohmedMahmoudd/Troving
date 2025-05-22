@@ -1,9 +1,12 @@
 {
-  "name": "javascript",
+  "homepage": "https://{MMohmedMahmoudd}.github.io/{Troving/",
+  "name": "troving",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -71,7 +74,7 @@
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc-fb9a90fa48-20240614",
     "eslint-plugin-react-refresh": "^0.4.14",
-    "gh-pages": "^6.2.0",
+    "gh-pages": "^6.3.0",
     "globals": "^15.11.0",
     "postcss": "^8.5.3",
     "postcss-import": "^16.1.0",
