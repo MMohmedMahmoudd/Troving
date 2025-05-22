@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
 import { createContext, useEffect, useState, useRef } from 'react';
-import { Navigate } from 'react-router-dom';
 import * as authHelper from '../_helpers';
 // import.meta.env.DEV ? '/api' :
 const API_URL =  import.meta.env.VITE_APP_API_URL;
@@ -15,7 +14,6 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const getInitialAuth = () => {
     const auth = authHelper.getAuth();
@@ -45,7 +43,7 @@ const AuthProvider = ({ children }) => {
           console.log('401 Unauthorized: Token may be invalid or expired');
           saveAuth(null);
           setCurrentUser(undefined);
-          setShouldRedirect(true);
+          window.location.href = '/Troving/auth/login';
         } else {
           setCurrentUser(undefined);
         }
@@ -180,7 +178,7 @@ const AuthProvider = ({ children }) => {
         verify,
       }}
     >
-      {shouldRedirect ? <Navigate to="/Troving/auth/login" replace /> : children}
+      {children}
     </AuthContext.Provider>
   );
 };
