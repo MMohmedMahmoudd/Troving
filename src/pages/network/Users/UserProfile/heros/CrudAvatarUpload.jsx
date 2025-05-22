@@ -2,6 +2,7 @@
 import { ImageInput } from '@/components/image-input';
 import { useState } from 'react';
 import { KeenIcon } from '@/components';
+import { toAbsoluteUrl } from '@/utils';
 
 const CrudAvatarUpload = ({ onFileChange, avatarURL,hasError }) => {
   const [avatar, setAvatar] = useState(
@@ -49,7 +50,7 @@ className={`image-input-placeholder rounded-full border-3 overflow-hidden w-48 h
   hasError ? 'border-red-500' : 'border-success image-input-empty:border-gray-300'
 }`}
             style={{
-              backgroundImage: `url(${avatar.length > 0 ? avatar[0].dataURL : '/media/avatars/blank.png'})`,
+              backgroundImage: `url(${avatar.length > 0 ? avatar[0].dataURL : toAbsoluteUrl("/media/avatars/blank.png")})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -60,7 +61,7 @@ className={`image-input-placeholder rounded-full border-3 overflow-hidden w-48 h
     alt="avatar"
     onError={(e) => {
       e.target.onerror = null; // Prevent endless loop if default also fails
-      e.target.src = "/media/avatars/blank.png"; // Fallback to default
+      e.target.src = toAbsoluteUrl("/media/avatars/blank.png"); // Fallback to default
     }}
     className="w-full h-full object-cover"
   />
